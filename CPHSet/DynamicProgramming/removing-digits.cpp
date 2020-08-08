@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -16,20 +17,20 @@ const ll INF = 1e18; //
 int main() {
   ios:: sync_with_stdio(0);
   cin.tie(0);
-  int n, target;
-  cin >> n >> target;
-  vi coins(n);
-  for (int&v : coins) cin >> v;
-  vector<vector<int>> ways (n+1, vector<int>(target+1, 0));
-  ways[0][0] = 1;
+  int n, curr;
+  cin >> n;
+  vi steps(n+1, 1e9);
   for(int i = 1; i <= n; i++){
-    for(int j = 0; j <= target; j++){
-      ways[i][j] = ways[i-1][j];
-      if(j - coins[i-1] >= 0) (ways[i][j] += ways[i][j-coins[i-1]]) %= MOD;
+    if (i < 10) steps[i] = 1;
+    else {
+      curr = i;
+      while(curr/10 > 0){
+        steps[i] = min(steps[i], 1 + steps[i - curr % 10]);
+        curr /= 10;
+      }
+      steps[i] = min(steps[i], 1+steps[i - curr]);
     }
   }
-  cout << ways[n][target] << "\n";
-
-
+  cout << steps[n] << "\n";
   return 0;
 }
