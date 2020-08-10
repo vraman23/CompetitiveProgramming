@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -12,10 +14,22 @@ typedef vector<int> vi;
 const int MOD = 1e9+7; // 998244353;
 const int MX = 2e5+5; //
 const ll INF = 1e18; //
+int n;
+
+int solve(int n){
+  ll f = 1, p2 = 1;
+  for(int i = 2; i <= n; ++i) {
+    f = f * i % MOD;
+    p2 = p2 * 2 % MOD;
+  }
+  return (f-p2 + MOD) % MOD;
+}
 
 int main() {
   ios:: sync_with_stdio(0);
   cin.tie(0);
+  cin >> n;
+  cout << solve(n) << "\n";
 
 
   return 0;

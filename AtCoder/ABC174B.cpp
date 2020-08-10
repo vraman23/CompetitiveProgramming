@@ -16,7 +16,14 @@ const ll INF = 1e18; //
 int main() {
   ios:: sync_with_stdio(0);
   cin.tie(0);
-
+  ll n, d, x, y;
+  cin >> n >> d;
+  int count = 0;
+  while(n--){
+    cin >> x >> y;
+    if (x * x + y * y <= d * d) count++;
+  }
+  cout << count << "\n";
 
   return 0;
 }

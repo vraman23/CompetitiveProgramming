@@ -16,7 +16,9 @@ const ll INF = 1e18; //
 int main() {
   ios:: sync_with_stdio(0);
   cin.tie(0);
-
-
+  int x;
+  cin >> x;
+  string out = (x >= 30)? "Yes" : "No";
+  cout << out << "\n";
   return 0;
 }
