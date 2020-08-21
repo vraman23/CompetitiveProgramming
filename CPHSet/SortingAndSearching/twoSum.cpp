@@ -13,11 +13,6 @@ const int MOD = 1e9+7; // 998244353;
 const int MX = 2e5+5; //
 const ll INF = 1e18; //
 
-bool compare(const pair<int, int>&i, const pair<int, int>&j)
-{
-    return i.first < j.first;
-}
-
 int main() {
   ios:: sync_with_stdio(0);
   cin.tie(0);
@@ -28,7 +23,7 @@ int main() {
     cin >> a[i].first;
     a[i].second = i+1;
   }
-  sort(a, a+n, compare);
+  sort(a, a+n);
 
   int start = 0;
   int end = n-1;

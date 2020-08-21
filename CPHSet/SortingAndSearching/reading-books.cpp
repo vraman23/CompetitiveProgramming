@@ -13,15 +13,22 @@ const int MOD = 1e9+7; // 998244353;
 const int MX = 2e5+5; //
 const ll INF = 1e18; //
 
+const ll mxN = 2e5;
+ll n, books[mxN];
+
 int main() {
   ios:: sync_with_stdio(0);
   cin.tie(0);
-  int n, t;
-  cin >> t;
-  while(t--){
-    cin >> n;
-    cout << (n/2)+1 << "\n";
-  }
+  cin >> n;
+  F0R(i, n) cin >> books[i];
+  sort(books, books + n);
+
+  int time = 0;
+
+
+
+
+
 
   return 0;
 }

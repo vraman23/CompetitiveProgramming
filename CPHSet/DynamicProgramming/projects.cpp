@@ -18,29 +18,31 @@ typedef vector<pi> vpi;
 const int MOD = 1e9+7; // 998244353;
 const int MX = 2e5+5; //
 const ll INF = 1e18; //
-
-int n;
-vector<ll> x(5000);
-pi dp[5000][5000];
+ll n;
 
 int main() {
   ios:: sync_with_stdio(0);
   cin.tie(0);
   cin >> n;
-  F0R(i, n) cin >> x[i];
-  for(int l = n-1; l >= 0; l--){
-    for(int r = l + 1; r < n; r++){
-      pi tr;
-      if(l == r) tr = make_pair(x[i], 0);
-      else {
-
-      }
-
-      diff[l][r] = max(x[l] - diff[l+1][r], x[r] - diff[l][r-1]);
-
-    }
+  vector<pair<pll, ll> > p(n);
+  ll a, b, c;
+  F0R(i, n){
+    cin >> a >> b >> c;
+    p[i] = make_pair(make_pair(b, a), c);
   }
+  sort(p.begin(), p.end());
+  set<pll> dp;
+  dp.insert(make_pair(0, 0));
+  ll best = 0;
+  F0R(i, n){
+    pll time = p[i].f;
+    auto it = dp.lower_bound(make_pair(time.s, 0));
+    --it;
+    best = max(best, (*it).s + p[i].s);
+    dp.insert(make_pair(time.f, best));
+  }
+  cout << best << "\n";
 
-  cout << dp[0][n-1][0] <<"\n";
 
+  return 0;
 }
