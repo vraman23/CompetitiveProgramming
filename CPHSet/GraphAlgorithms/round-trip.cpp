@@ -13,7 +13,7 @@ typedef vector<pi> vpi;
 #define pb push_back
 
 const int MOD = 1e9+7; // 998244353;
-const int MX = 2e5+5; //
+const int MX = 1e5; //
 const ll INF = 1e18; //
 
 int dx[] = {0, 0, 1, -1};
@@ -21,14 +21,15 @@ int dy[] = {1, -1, 0, 0};
 string ds = "RLDU";
 
 int n, m;
-bool e(int x, int y){
-  return (x < n && x >= 0 && y < m && y >= 0);
-}
+vi adj[MX];
 
 
 int main() {
   ios:: sync_with_stdio(0);
   cin.tie(0);
+  cin >> n >> m;
+  if(m == n-1) cout << "IMPOSSIBLE" <<"\n";
+  //check for a cycle of length n
 
 
   return 0;

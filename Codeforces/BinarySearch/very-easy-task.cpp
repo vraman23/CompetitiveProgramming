@@ -1,6 +1,8 @@
+//https://codeforces.com/edu/course/2/lesson/6/2/practice/contest/283932/problem/C
 #include <bits/stdc++.h>
 
 using namespace std;
+
 
 typedef long long ll;
 typedef pair<int,int> pi;
@@ -14,33 +16,34 @@ typedef vector<pi> vpi;
 #define F0R(i, a) for(ll i = 0; i < a; i++)
 #define f first
 #define s second
+#define pb push_back
 
 const int MOD = 1e9+7; // 998244353;
 const int MX = 2e5+5; //
 const ll INF = 1e18; //
+int n, x, y;
 
-int n;
-vector<ll> x(5000);
-pll dp[5000][5000];
+bool good(int t){
+  int k = min(x, y);
+  return (t >= k) + (t-k)/x + (t-k)/y >= n;
+}
 
 int main() {
   ios:: sync_with_stdio(0);
   cin.tie(0);
-  cin >> n;
-  F0R(i, n) cin >> x[i];
-  for(int l = n-1; l >= 0; l--){
-    for(int r = l + 1; r < n; r++){
-      pll tr;
-      if(l == r) tr = make_pair(x[l], 0);
-      else {
-        pll one = make_pair(x[l] + dp[l+1][r].s, dp[l+1][r].f);
-        pll two = make_pair(x[r] + dp[l][r-1].s, dp[l][r-1].f);
-        tr = max(one, two);
-      }
-      dp[l][r] = tr;
-    }
+  cin >> n >> x >> y;
+  int l = 1; // !good(l)
+  int r = 1; // good(r)
+  while(!good(r)) r*= 2;
+  while(r > l+1){
+    int m = l + (r-l)/2;
+    if(good(m)) r = m;
+    else l = m;
   }
+  cout << r << "\n";
 
-  cout << dp[0][n-1].f <<"\n";
 
+
+
+  return 0;
 }
