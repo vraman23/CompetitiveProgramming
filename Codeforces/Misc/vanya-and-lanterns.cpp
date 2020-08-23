@@ -1,4 +1,4 @@
-//https://codeforces.com/edu/course/2/lesson/6/2/practice/contest/283932/problem/G
+//https://codeforces.com/problemset/problem/492/B
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -19,17 +19,22 @@ typedef vector<pi> vpi;
 #define pb push_back
 
 const int MOD = 1e9+7; // 998244353;
-const int MX = 50; //
+const int MX = 1e3; //
 const ll INF = 1e18; //
-int k, n, a[MX];
+int n, l;
+
 
 int main() {
   ios:: sync_with_stdio(0);
   cin.tie(0);
-  cin >> k >> n;
+  cin >> n >> l;
+  vector<double> a(n, 0);
   F0R(i, n) cin >> a[i];
-  
-
+  sort(a.begin(), a.end());
+  double diff = 0;
+  F0R(i, n-1) diff = max(diff, a[i+1] - a[i]);
+  diff = max(diff/2, max(a[0], l-a[n-1]));
+  cout << setprecision(20) << diff << "\n";
 
 
 
