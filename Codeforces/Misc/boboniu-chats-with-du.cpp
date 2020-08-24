@@ -36,9 +36,11 @@ int main() {
   }
   sort(a.begin(), a.end());
   sort(b.begin(), b.end());
+  int A = a.size();
+  int B = b.size();
   int ans = 0;
   int x = 0, y = 0;
-  while(x < a.size() && y < b.size()){
+  while(x < A && y < B){
     int sum = 0;
     int index = min(a.size()-1, x+d);
     for(int i = x; i < index, i++){
@@ -48,6 +50,9 @@ int main() {
       ans += b[y];
       y++;
       x = min(x+d, a.size());
+    } else {
+      ans += a[x];
+      x =
     }
   }
   while(x < a.size()) {
