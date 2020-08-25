@@ -21,14 +21,30 @@ typedef vector<pi> vpi;
 const int MOD = 1e9+7; // 998244353;
 const int MX = 50; //
 const ll INF = 1e18; //
-int k, n, a[MX];
+ll k, n, a[MX];
+
+bool good(ll x){
+  ll slots = x * k;
+  F0R(i, n) slots -= min(x, a[i]);
+  return slots <= 0;
+}
 
 int main() {
   ios:: sync_with_stdio(0);
   cin.tie(0);
   cin >> k >> n;
   F0R(i, n) cin >> a[i];
-  
+  ll l = 0;
+  ll r = 1;
+  while(good(r)) r *= 2;
+  while(r > l+1){
+    ll m = l + (r-l)/2;
+    if(good(m)) l = m;
+    else r = m;
+  }
+  cout << l << "\n";
+
+
 
 
 

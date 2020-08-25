@@ -18,35 +18,45 @@ template <typename T> void setmax(T& a, const T& b) { if (b > a) a = b; }
 #define s second
 #define pb push_back
 #define sz(a) int((a).size())
-
+string S;
+ll N[3], P[3], R, counts[3];
 
 const int MOD = 1e9+7; // 998244353;
-const int MX = 1e5; //
+const int MX = 2e5+5; //
 const ll INF = 1e18; //
+
+bool good(ll x){
+  ll cost = 0;
+  F0R(i, 3) cost += max(counts[i] * x - N[i], 0LL) * P[i];
+  return cost <= R;
+}
 
 int main() {
   ios:: sync_with_stdio(0);
   cin.tie(0);
-  int T; cin >> T;
-  while(T--){
-    int N, K, Z; cin >> N >> K >> Z;
-    vector<int> A(N);
-    F0R(i, N) cin >> A[i];
-    int ans = 0;
-    vector<vi> dp(N, vi(Z+1));
-    dp[0][0] = A[0];
-    F0R(i, N){
-      F0R(z, Z+1){
-        setmax(ans, dp[i][z]);
-        if(i + 2*z >= K) continue;
-        if(i < N-1) setmax(dp[i+1][z], dp[i][z] + A[i+1]);
-        if (i >= 1 && z < Z) {
-          setmax(ans, dp[i][z] + A[i-1]);
-          if(i + 2*z + 2 <= K) setmax(dp[i][z+1], dp[i][z] + A[i-1] + A[i]);
-        }
-      }
-    }
-    cout << ans << "\n";
+  cin >> S;
+  for(auto c : S){
+    if(c == 'B') counts[0]++;
+    else if(c == 'S') counts[1]++;
+    else counts[2]++;
   }
+  F0R(i, 3) cin >> N[i];
+  F0R(i, 3) cin >> P[i];
+
+  cin >> R;
+  ll l = 0;
+  ll r = 1;
+  while(good(r)) r *= 2;
+  while(r > l+1) {
+    ll m = l + (r-l)/2;
+    if(good(m)) l = m;
+    else r = m;
+  }
+  cout << l << "\n";
+
+
+
+
+
   return 0;
 }

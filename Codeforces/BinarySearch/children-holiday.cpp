@@ -61,8 +61,12 @@ int main() {
   // cout << bpw(2, 0) << " " << bpw(2, 1) << "\n";
 
   // cout << "\n\n\n\n";
+  cout << bpw(114200, 0) << "\n";
   cout << r << "\n";
-  F0R (i, n) cout << bpw(r, i) << " ";;
+  F0R (i, n) {
+    cout <<bpw(r, i) << "";
+    m -= min(m, bpw(r, i));
+  }
   cout << "\n";
 
 
