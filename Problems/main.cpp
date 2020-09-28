@@ -25,30 +25,27 @@ const int MX = 2e5+5; //
 const ll INF = 1e18; //
 
 
+void solve(set<int> &s){
+  vector<int> v(s.begin(), s.end());
+  for(int i = 0; i < sz(v); i++){
+
+  }
+}
+
 int main() {
   ios_base::sync_with_stdio(0); cin.tie(0); // see Fast Input & Output
-  int n; cin >> n;
-  int x;
-  int min = 10001, max = -1;
-  int ans = 0;
-  for(int i = 0; i < n; i++){
-    cin >> x;
-    if(i == 0) {
-      min = x;
-      max = x;
-      continue;
-    }
-    if(x < min) {
-      min = x;
-      ans++;
-    }
-    if(x > max){
-      max = x;
-      ans++;
-    }
+  int n, q; cin >> n >> q;
+  set<int> p;
+  F0R(i, n){
+    int x; cin >> x;
+    p.insert(x);
   }
-  cout << ans <<"\n";
-
-
+  solve(p);
+  F0R(i, q) {
+    int a, b; cin >> a >> b;
+    if(a) p.insert(b);
+    else p.erase(b);
+    solve(p);
+  }
 
 }
