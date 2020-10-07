@@ -24,11 +24,32 @@ const int MOD = 1e9+7; // 998244353;
 const int MX = 2e5+5; //
 const ll INF = 1e18; //
 
+int arr[MX];
+
+int solve(int l, int r){
+  if (r-l == 1) return 1;
+  int m = l + (r-l)/2;
+  int one = 0;
+  for(int i = m-1; i >= l; i--){
+    if(arr[i]<= arr[i+1]) one++;
+    else break;
+  }
+  int two = 1;
+  for(int i = m; i + 1 < r; i++){
+    if(arr[i] <= arr[i+1]) two++;
+    else break;
+  }
+  // cout << one*two << "\n";
+  return one*two + solve(l, m) + solve(m, r);
+}
+
+
 int main() {
   ios_base::sync_with_stdio(0); cin.tie(0); // see Fast Input & Output
   int t; cin >> t;
   while(t--){
     int n; cin >> n;
-    
+    F0R(i, n) cin >> arr[i];
+    cout << solve(0, n) << "\n";
   }
 }

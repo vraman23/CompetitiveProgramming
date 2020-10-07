@@ -16,11 +16,10 @@ void post(int u){
 }
 
 void dfs(int u){
-  if(seen[u]) return;
   seen[u] = true;
   pre(u);
   for(int v : adj[u]) {
-    dfs(v);
+    if(!seen[v]) dfs(v);
   }
   post(v);
 }
